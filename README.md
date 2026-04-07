@@ -1,281 +1,152 @@
-# 🧭 Travel Diary（旅游日记）
+# Travel Diary（旅游日记）
+
+> 一个面向个人旅行记录与回顾的 iOS 产品作品。它把时间轴记录、统计分析、足迹地图和 AI 问答串成了一条完整链路，不只是“记下来”，也能“回头看”和“继续总结”。
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-MVP_Complete-success" alt="Status">
-  <img src="https://img.shields.io/badge/Platform-WeChat_Mini_Program-green" alt="Platform">
+  <img src="https://img.shields.io/badge/Platform-iOS-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/Frontend-SwiftUI-black" alt="Frontend">
   <img src="https://img.shields.io/badge/Backend-Spring_Boot_3-brightgreen" alt="Backend">
-  <img src="https://img.shields.io/badge/Frontend-UniApp_Vue3-blue" alt="Frontend">
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License">
+  <img src="https://img.shields.io/badge/Data-MySQL_%2B_Redis-orange" alt="Data">
+  <img src="https://img.shields.io/badge/AI-FastAPI_%2B_SSE-purple" alt="AI">
 </p>
-
-> **记录每一刻的风景与感动。**
->
-> Travel Diary 是一个基于 **时间轴 + 照片叙事** 的个人旅游记录微信小程序，辅助以结构化的开销统计和足迹地图可视化，旨在提供清晰、纯粹的旅行回忆体验。
->
-> 🧾适合作为毕设和课设，需要代码请联系作者
->
-> 作者联系方式：
->
-> 🛰️ EasyXdc0112
->
-> 📮 1330064686@qq.com
----
-
 ## 📸 应用截图
 
-<p align="center">
-  <img src="https://travel-diary-assets.oss-cn-chengdu.aliyuncs.com/%E7%99%BB%E9%99%86%E9%A1%B5.png" width="150" alt="登陆页">
-  <img src="https://travel-diary-assets.oss-cn-chengdu.aliyuncs.com/%E9%A6%96%E9%A1%B5.png" width="150" alt="首页">
-  <img src="https://travel-diary-assets.oss-cn-chengdu.aliyuncs.com/%E8%A1%8C%E7%A8%8B%E8%AF%A6%E7%BB%86%E9%A1%B5.png" width="150" alt="行程详情">
-  <img src="https://travel-diary-assets.oss-cn-chengdu.aliyuncs.com/%E7%BB%9F%E8%AE%A1%E9%A1%B5.png" width="150" alt="统计页">
-  <img src="https://travel-diary-assets.oss-cn-chengdu.aliyuncs.com/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E9%A1%B5.png" width="150" alt="个人中心">
-</p>
-
-
+下面展示的是当前 `iOS` 端的真实运行截图。这里直接保留了原始截图的圆角和系统状态栏，尽量保留产品本身的观感。
 
 <p align="center">
-  <em>从左到右：登陆页、首页行程列表、行程详情时间轴、排行榜统计、个人中心足迹地图</em>
+  <img src="./screenshots/raw/01-home.png" width="220" alt="首页 / 行程列表">
+  <img src="./screenshots/raw/02-trip-detail.png" width="220" alt="行程详情 / 时间轴">
+  <img src="./screenshots/raw/03-stats-overview.png" width="220" alt="统计页总览">
 </p>
 
----
+<p align="center">
+  <img src="./screenshots/raw/04-profile-overview.png" width="220" alt="个人中心 / 足迹地图">
+  <img src="./screenshots/raw/05-ai-sheet.png" width="220" alt="AI 助手">
+</p>
+
+**首页 / 行程列表**
+
+首页聚合最近行程、足迹摘要与关键统计，在信息密度和浏览效率之间做平衡。
+
+**行程详情 / 时间轴**
+
+以时间轴组织旅行过程，把图文记录、地点与消费信息整合到同一条叙事链路中，是整个产品的核心体验。
+
+**统计页**
+
+从旅行、城市、花费与照片维度做聚合展示，强化“回顾”和“总结”这两个价值点。
+
+**个人中心 / 足迹地图**
+
+把资料管理、城市足迹和旅行资产沉淀到同一个入口里，补齐产品闭环。
+
+**AI 助手**
+
+基于个人旅行数据提供问答能力，连接 iOS 客户端、Java 后端与独立 AI 服务，体现完整全栈链路。
+
+这 5 张主图对应的是产品的主流程：
+
+- 从首页进入并浏览已有旅行
+- 在详情页按时间轴回看单次旅程
+- 在统计页从数据维度重新理解旅行内容
+- 在个人中心查看足迹和个人沉淀
+- 在 AI 助手中基于个人旅行数据继续提问和总结
+
+<p align="center">
+  <img src="./screenshots/raw/06-login.png" width="180" alt="登录页">
+  <img src="./screenshots/raw/09-add-journal.png" width="180" alt="写日记弹层">
+  <img src="./screenshots/raw/08-stats-detail.png" width="180" alt="统计页细节">
+  <img src="./screenshots/raw/07-profile-detail.png" width="180" alt="个人中心细节">
+</p>
+
+补充细节截图主要用来说明这个项目不是静态展示，而是一个可录入、可统计、可扩展的完整系统。
 
 ## 🛠️ 技术栈
 
-本项目采用**前后端分离架构**，前端基于 uni-app 开发微信小程序，后端采用 Spring Boot 3 构建 RESTful API。
+| 层级 | 技术 | 说明 |
+|---|---|---|
+| iOS 客户端 | SwiftUI | 页面组织、状态驱动 UI、交互实现 |
+| 业务后端 | Spring Boot 3 | 认证、行程、节点、统计等业务接口 |
+| 数据存储 | MySQL | 用户、行程、节点等核心业务数据 |
+| 缓存 | Redis | 缓存与状态优化 |
+| AI 服务 | FastAPI + SSE | 旅行问答与流式响应 |
+| 鉴权 | JWT | 登录态管理 |
 
-### 前端技术
+**整体链路**
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| **uni-app** | Vue 3 | 跨端开发框架 |
-| **uView UI** | v2 | 高颜值 UI 组件库 |
-| **ECharts** | lime-echart | 小程序端数据可视化 |
+```text
+iOS (SwiftUI)
+   |
+   | HTTP / JSON
+   v
+Spring Boot Backend
+   |
+   |-- MySQL: 用户 / 行程 / 节点 / 统计数据
+   |-- Redis: 缓存
+   |
+   | HTTP / SSE
+   v
+AI Service (FastAPI)
+```
 
-### 后端技术
-
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| **Spring Boot** | 3.x | 核心后端框架 |
-| **MyBatis Plus** | 3.5.x | ORM 持久层框架 |
-| **MySQL** | 8.x | 关系型数据库 |
-| **Redis** | 7.x | 缓存服务 |
-| **Flyway** | - | 数据库迁移管理 |
-| **JWT** | jjwt 0.12.x | 用户身份认证 |
-| **阿里云 OSS** | - | 对象存储服务 |
-
----
+这个项目不是只做前端页面，而是把客户端交互、后端接口、数据结构和 AI 能力串成一个完整系统。
 
 ## ✨ 核心功能
 
-### 🗺️ 行程管理
+### 1. 时间轴旅行记录
 
-- **全周期记录**：创建、编辑及管理每一次完整的出行
-- **时间轴叙事**：以"Day"为节点，按日期分组展示旅程脉络
-- **状态切换**：支持「进行中」和「已完成」两种状态
-- **封面自定义**：为每次旅行设置专属封面图片
+- 以行程为单位组织旅行内容
+- 在单次旅行内混合展示日记记录与消费节点
+- 支持进行中 / 已完成状态切换
+- 支持封面图、地点信息和多图记录
 
-### 📝 日记与记账
+### 2. 数据统计与回顾
 
-- **日记节点**：记录标题、内容、时间，支持多图上传
-- **消费节点**：记录金额、分类、备注
-- **灵活分类**：支持餐饮、交通、住宿、门票、购物等分类
-- **快捷编辑**：支持节点的增删改操作
+- 旅行次数、城市数、出行天数、总花费聚合展示
+- 月度消费趋势
+- 消费分类占比
+- 城市排行与旅行时长排行
+- 照片墙式回顾
 
-### 📊 数据统计（排行榜风格）
+### 3. 足迹地图与个人资产
 
-- **城市消费排行** TOP5
-- **消费分类占比**（可视化进度条）
-- **日均花费排行**
-- **旅行时长排行** TOP3
-- **新解锁城市**列表
-- 支持**年月筛选**
+- 基于旅行城市生成足迹地图
+- 在个人中心统一管理旅行资产
+- 支持资料维护与数据导出
 
-### 🗾 足迹地图
+### 4. AI 旅行问答
 
-- **中国地图**可视化已探索城市
-- 散点大小根据**访问次数**动态变化
-- **飞线动画**展示旅行轨迹
-- **省份高亮**显示已到访区域
-- 支持查看某城市的所有行程
+- 基于个人旅行数据进行问答
+- 支持流式回复
+- 支持查看最近对话记录
 
-### 🔧 更多功能
+### 5. 内容录入与管理
 
-- **微信一键登录**（无需注册）
-- **个人资料编辑**（昵称、头像）
-- **数据导出**（CSV 格式）
-- **API 文档**（自动生成）
-- **日历视图**（标记旅行日期）
+- 支持新增日记 / 消费两类节点
+- 支持标签、照片和文本内容输入
+- 支持围绕单次旅行持续补充记录
 
----
+## 👨‍💻 我负责的部分
 
-## 📁 项目结构
+- iOS 客户端主要页面与交互设计实现
+- Java 后端接口设计与业务联调
+- MySQL 数据建模与旅行数据组织
+- Redis 缓存接入
+- AI 问答能力接入与流式对话联调
+- 作品展示所需的演示数据整理与截图规划
 
-```
-TravelDiary/
-├── frontend/                 # 前端项目 (uni-app)
-│   ├── src/
-│   │   ├── components/       # 组件
-│   │   │   ├── views/        # 核心视图 (HomeView, StatsView, ProfileView)
-│   │   │   ├── AddMomentModal/
-│   │   │   ├── AddTripModal/
-│   │   │   └── ...
-│   │   ├── pages/            # 页面
-│   │   ├── service/          # API 服务层
-│   │   └── static/           # 静态资源
-│   └── package.json
-│
-├── backend/                  # 后端项目 (Spring Boot)
-│   ├── src/main/java/com/travel/diary/
-│   │   ├── controller/       # API 控制器
-│   │   ├── service/          # 业务逻辑层
-│   │   ├── entity/           # 实体类
-│   │   ├── dto/              # 数据传输对象
-│   │   ├── vo/               # 视图对象
-│   │   ├── mapper/           # MyBatis 映射
-│   │   ├── config/           # 配置类
-│   │   └── common/           # 公共组件
-│   ├── src/main/resources/
-│   │   ├── application.yml   # 应用配置
-│   │   └── db/migration/     # Flyway 迁移脚本
-│   └── pom.xml
-│
-├── doc/                      # 文档
-│   └── API.md                # 接口文档 (自动生成)
-│
-└── README.md
-```
+这个项目对我来说不是单一端能力展示，而是一次完整的产品实现练习：
 
----
+- 前端要保证页面完成度和交互连贯性
+- 后端要保证行程、节点、统计等业务链路可用
+- 数据层要支撑记录、回顾与聚合分析
+- AI 能力要建立在真实业务数据之上，而不是孤立功能
 
-## 🚀 快速开始
+## 📌 项目说明
 
-### 环境要求
+- 当前对外展示重点：`iOS` 端
+- 小程序端：仍在开发中
+- 当前项目更偏个人作品工程，不以开源协作为目标
+- 完整业务源码与敏感配置不在本公开展示仓库中
 
-- **Node.js** >= 16
-- **JDK** >= 17
-- **MySQL** >= 8.0
-- **Redis** >= 7.0
-- **微信开发者工具**
-
-### 后端启动
-
-1. **克隆项目**
-   ```bash
-   git clone <repository-url>
-   cd TravelDiary/backend
-   ```
-
-2. **配置数据库**
-   - 创建 MySQL 数据库 `TravelDiary`
-   - 修改 `application.yml` 中的数据库连接配置
-
-3. **配置 Redis**
-   - 确保 Redis 服务已启动
-   - 修改 `application.yml` 中的 Redis 配置
-
-4. **配置阿里云 OSS**（可选，用于图片存储）
-   - 在 `application.yml` 中配置 OSS 密钥
-
-5. **启动服务**
-   ```bash
-   mvn spring-boot:run
-   ```
-
-6. **访问 API 文档**
-   - Swagger UI: `http://localhost:8080/swagger-ui.html`
-   - OpenAPI JSON: `http://localhost:8080/v3/api-docs`
-
-### 前端启动
-
-1. **安装依赖**
-   ```bash
-   cd TravelDiary/frontend
-   npm install
-   ```
-
-2. **开发模式运行**
-   ```bash
-   npm run dev:mp-weixin
-   ```
-
-3. **微信开发者工具**
-   - 打开微信开发者工具
-   - 导入项目：`frontend/dist/dev/mp-weixin`
-   - 配置 AppID（或使用测试号）
-
-### 真机调试
-
-修改 `frontend/src/service/api.js` 中的 `BASE_URL` 为电脑 IP 地址：
-
-```javascript
-const BASE_URL = 'http://192.168.x.x:8080';
-```
-
----
-
-## 📊 数据库设计
-
-### 核心表结构
-
-| 表名 | 说明 |
-|------|------|
-| `tb_user` | 用户表 |
-| `tb_trip` | 行程表 |
-| `tb_trip_node` | 行程节点表（日记/消费） |
-
-
----
-
-## 🔗 API 接口
-
-| 模块 | 端点 | 说明 |
-|------|------|------|
-| 用户 | `POST /api/user/login` | 微信登录 |
-| 用户 | `GET /api/user/current` | 获取当前用户 |
-| 行程 | `PUT /api/trip/create` | 创建行程 |
-| 行程 | `GET /api/trip/list` | 行程列表 |
-| 行程 | `GET /api/trip/{id}/detail` | 行程详情 |
-| 节点 | `POST /api/node/add` | 添加节点 |
-| 统计 | `GET /api/stats/ranking` | 排行榜统计 |
-| 文件 | `POST /api/file/upload` | 上传文件 |
-
-
----
-
-## 🎨 设计特点
-
-- **Bento Grid** 风格统计卡片
-- **毛玻璃效果** (Glassmorphism) 弹窗
-- **主题绿色** (#748E63) 品牌色系
-- **流畅动画** 过渡效果
-- **响应式布局** 适配不同机型
-
----
-
-## 📝 待办事项
-- [ ] 支持多语言（i18n）
-- [ ] 年度报告生成功能
-- [ ] 地图轨迹记录功能
-
----
-
-## 📄 开源协议
-
-本项目采用 [MIT License](./LICENSE) 开源协议。
-
----
-
-## 🙏 致谢
-
-- [uni-app](https://uniapp.dcloud.io/) - 跨端开发框架
-- [uView UI](https://www.uviewui.com/) - UI 组件库
-- [ECharts](https://echarts.apache.org/) - 可视化图表库
-- [Spring Boot](https://spring.io/projects/spring-boot) - 后端框架
-
-
-
-
-
-
-
-
+这个仓库是 **作品展示仓库**，重点给 HR / 面试官快速了解产品完成度、功能结构和我的实现范围。
